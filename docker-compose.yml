@@ -1,0 +1,24 @@
+# docker-compose.yml
+services:
+
+  app:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - 5000:5000
+    volumes:
+      - ./app:/app
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'tecnogurus'
+      MYSQL_PASSWORD: 'tecnogurus'
+      MYSQL_ROOT_PASSWORD: 'tecnogurus'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./datos_db:/var/lib/mysql 
