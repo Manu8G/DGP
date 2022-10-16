@@ -11,3 +11,8 @@
 ```
 	docker compose up
 ```
+
+* Acceder a la base de datos
+```
+	docker compose exec mysql mysql -p
+```
