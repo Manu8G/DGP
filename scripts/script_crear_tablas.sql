@@ -46,6 +46,23 @@ CREATE TABLE tarea (
 	descripcion varchar(140),
 	id_mensaje varchar(20),	
 	PRIMARY KEY (id_tarea)
+);
+
+CREATE TABLE comanda (
+	id_tarea varchar(10),
+	material varchar(20),
+	cantidad (int),
+	aula varchar(10),
+	PRIMARY KEY (id_tarea)
+);
+
+CREATE TABLE menus (
+	id_tarea varchar(10),
+	tipo varchar(20),
+	postre varchar(140),
+	cantidad (int),
+	cantidad_postre (int),
+	PRIMARY KEY (id_tarea)
 ); 
 
 
