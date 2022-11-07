@@ -25,7 +25,7 @@ class Alumno(models.Model):
     tipo_discapacidad   = models.CharField(max_length = 20)
 
     def __str__(self):
-        return self.usuario
+        return self.usuario.usuario
 
 
 class Profesor(models.Model):
@@ -33,14 +33,14 @@ class Profesor(models.Model):
     id_curso    = models.CharField(max_length = 10)
 
     def __str__(self):
-        return self.usuario
+        return self.usuario.usuario
 
 
 class Admin(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
 
     def __str__(self):
-        return self.usuario
+        return self.usuario.usuario
 
 
 class Chat(models.Model):
@@ -75,7 +75,7 @@ class Comanda(models.Model):
     aula        = models.CharField(max_length = 10)
 
     def __str__(self):
-        return self.id_tarea
+        return self.id_tarea.id_tarea
 
 
 class Menu(models.Model):
@@ -86,4 +86,4 @@ class Menu(models.Model):
     cantidad_postre = models.IntegerField()
 
     def __str__(self):
-        return self.id_tarea
+        return self.id_tarea.id_tarea
