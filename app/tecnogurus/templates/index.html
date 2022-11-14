@@ -1,4 +1,100 @@
-<body>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale-1.0">
+        <link rel="stylesheet" href="css/estyless.css">
+        <title>Arasaac</title>
+    </head>    
 
-    <a>prueba</a>
-</body>
+    <body>
+        <div class="regular">
+            <h2>Que imagen quieres</h2>
+            <input type="text" id="tbuser" placeholder="quiero..." maxlength="20">
+            <input type="button" id="btn1" value="Buscar">
+        </div>
+        <div class="output"></div>
+        <div>
+            <!--<img src="XXX" id="ruta" alt="Edit" />
+            <img width="254" height="236" src="" alt="logo"></img>        -->
+        </div>
+        <script type="text/javascript">
+            const txt1 = document.getElementById('tbuser');
+            const btn1 = document.getElementById('btn1');
+
+            btn1.addEventListener('click', buscar, false);
+
+            function buscar(){
+                console.log("ESTAMOS DENTRO");
+                var enlace = "https://api.arasaac.org/api/pictograms/es/search/"+txt1;
+                jQuery.getJSON(enlace, function(data) {
+                    //localStorage.setItem('static/datos.json', data);
+                    
+                    const fs = require('fs');
+                    //fs.readFile('static/datos.json', 'utf8', (err,data)=>{
+                    //    if(err){
+                    //        console.error(err);
+                    //        return;
+                    //    }
+                    //    console.log(data);
+                    //});
+                    const content = data;
+                    fs.appendFile('static/datos.json', content, err=>{  //writeFile
+                        if(err){
+                            console.err;
+                            return;
+                        }
+                    });
+                })
+                generar();
+            }
+
+            function generar(){
+                const output = document.querySelector('.output');
+                const output1 = document.createElement('div');
+                const ul = document.createElement('ul');
+                output.append(output1);
+                output.append(ul);
+                const url = 'static/datos.json';
+                window.addEventListener('DOMContentLoaded', ()=>{
+                    output1.textContent = 'ready';
+                    loadData();
+                })
+            }
+
+            function loadData(){
+                fetch(url).then(rep=>rep.json()).then((data)=>{
+                    //console.log(data);
+                    addtoPage(data);
+                })
+            }
+
+            function addtoPage(arr){
+                arr.forEach((el)=>{
+                    try{
+                        console.log(el);
+                        const li = document.createElement('li');
+                        li.textContent = el._id;
+                        ul.append(li);
+                        const lis = document.createElement('li');
+                        lis.textContent = el.keywords[0].keyword;
+                        ul.append(lis);
+                        var liss = document.createElement('img');
+                        liss.src = 'https://api.arasaac.org/api/pictograms/'+el._id+'?download=false';
+                        ul.append(liss);
+                    }catch(error){
+                        console.log(error);
+                    }
+                    
+                })
+            }
+            //let images = [2242 --- 38645];
+        </script>
+        <script src="static/scripts/jquery.min.js"></script>
+        <script src="static/scripts/require.js"></script>
+    </body>
+
+
+</html>
+
+
