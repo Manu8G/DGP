@@ -1,7 +1,9 @@
 from django.contrib import admin
+from .models import Profile
 from .models import Usuario, Curso, Alumno, Profesor, Admin, Curso, Mensaje, Chat, Tarea, Comanda, Menu
 
 # Register your models here.
+admin.site.register(Profile)
 
 admin.site.register(Usuario)
 
