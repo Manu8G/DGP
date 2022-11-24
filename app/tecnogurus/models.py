@@ -14,7 +14,7 @@ class Friend(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return profile.name
+        return self.profile.name
 
 
 
