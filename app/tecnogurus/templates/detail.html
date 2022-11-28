@@ -9,7 +9,7 @@
             font-size: 18px;
         }
     </style>
-    <div class="chat-container2">
+    <div class="chat-container2"><!--Aqui-->
         <div class="identity">
             <div>
                 <a href="{% url 'index' %}">
@@ -28,16 +28,18 @@
             <div class="chat-body" id="chat-body">
                 {% for chat in chats %}
                     {% if chat.msg_sender == user and chat.msg_receiver == profile %}
-                    <div class="chat-box-sent">
+                    <div class="chat-box">
+                        <img src="{{user.pic.url}}" alt="Avatar" style="width:100%;">
                         {{chat}}
                     </div>
                     {% elif chat.msg_sender == profile and chat.msg_receiver == user %}
-                    <div class="chat-box-received">
+                    <div class="chat-box received">
+                        <img src="{{friend.profile.pic.url}}" alt="Avatar" class="right" style="width:100%;">
                         {{chat}}
                     </div>
                     {% endif %}
                 {% endfor %}        
-                <div class="chat-box-sent" id ="chat-box-sent" style="display: none">
+                <div class="chat-box" id ="chat-box" style="display: none">
                 </div>        
             </div>
             <form action="" id="myform" method="POST">
@@ -83,7 +85,7 @@
                 console.log('Success:', data);
                 let chat_body = document.getElementById('chat-body')
                 let chatMessageBox = document.createElement("div")
-                chatMessageBox.classList.add("chat-box-sent")
+                chatMessageBox.classList.add("chat-box")
                 chatMessageBox.innerText = data
                 chat_body.append(chatMessageBox)
                 document.getElementById("id_body").value=""
@@ -105,7 +107,7 @@
                         }else{
                             let chat_body = document.getElementById('chat-body')
                             let chatMessageBox = document.createElement("div")
-                            chatMessageBox.classList.add("chat-box-received")
+                            chatMessageBox.classList.add("chat-box received")
                             chatMessageBox.innerText = lastMsg
                             chat_body.append(chatMessageBox)
                             document.getElementById("id_body").value=""

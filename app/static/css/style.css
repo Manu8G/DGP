@@ -13,7 +13,7 @@ ul {
 body{
     width: 100%;
     height: 100vh;
-    display: flex;
+    display: block;  /*Cambiar el display para que ocupe toda la pantalla*/
     align-items: center;
     justify-content: center;
     background-color: slateblue;
@@ -50,8 +50,8 @@ img{
 }
 
 .chat-container, .chat-container2{
-    width: 350px;
-    height: 580px;
+    width: 100%;
+    height: 100%;
     /* border: 2px solid black; */
     background-color: white;
     border-radius: 30px;
@@ -89,7 +89,7 @@ img{
 
 .friends-container{
     width: 100%;
-    height: 380px;
+    height: 86%;
     /* border: 2px solid black; */
     overflow: auto;
 }
@@ -170,7 +170,7 @@ svg{
 
 .identity{
     width: 100%;
-    height: 80px;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -181,7 +181,7 @@ svg{
 
 .sub-container{
 
-    height: 100%;
+    height: 90%;
     width: 100%;
     /* border: 2px solid blue; */
     padding: 10px;
@@ -195,7 +195,7 @@ svg{
 
 .chat-body{
     width: 100%;
-    height: 280px;
+    height: 85%;
     /* border: 2px solid slateblue; */
     overflow: auto;
     /* display: flex;
@@ -205,7 +205,7 @@ svg{
 
 #myform{
     width: 100%;
-    height: auto;
+    height: 12%;
     /* border: 2px solid black; */
     /* display: flex;
     justify-content: space-between;
@@ -243,6 +243,57 @@ button{
     
 }
 
+
+
+/*
+
+*/
+.chat-box {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1; /*f1f1f1*/
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .received {
+    border-color: #ccc;
+    background-color: #ddd;/*ddd*/
+  }
+  
+  .chat-box::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .chat-box img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  .chat-box img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  /*
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  .time-left {
+    float: left;
+    color: #999;
+  }
+  
+  
+  */
+/*
 .chat-box-received, .chat-box-sent{
     width: 200px;
     height: auto;
@@ -251,7 +302,7 @@ button{
     color: white;
     margin-left: auto;
     margin-bottom: 10px;
-    display: flex;
+    display: block;
     align-items: center;
     padding:10px 10px;
     border-radius: 10px;
@@ -263,3 +314,4 @@ button{
     float: left;
    
 }
+*/
