@@ -13,4 +13,7 @@ urlpatterns = [
     path('prueba', views.prueba, name='prueba'),
     path('fin_tarea', views.fin_tarea, name='fin_tarea'),
     path('borrar_tarea', views.borrar_tarea, name='borrar_tarea'),
+    path('<str:id_tarea>/modificarTarea', views.modificarTarea, name='modificarTarea'),
+    path('crearTarea', views.crearTarea, name='crearTarea'),
+    path('listaTarea', views.listaTarea, name='listaTarea'),
 ]

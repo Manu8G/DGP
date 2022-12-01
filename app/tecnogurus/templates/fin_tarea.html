@@ -68,6 +68,10 @@
 <h1>Tareas</h1>
 
   <p>Actualmente hay  {{num_tareas}} tareas</p>
+  <div style="position:absolute; top:20px; left:200px;">
+   	<a href="{% url 'crearTarea' %}"><button class="button" type="button" >Crear Tarea</button></a>
+  </div>
+  
 
     {% for tarea in tarea_p %}
     <div class="container">
@@ -81,6 +85,7 @@
         <!--<button id="boton" onclick="myFunction()">Finalizar</button>-->
           <div style="position:absolute; top:20px; right:0px;">
             <a data-fancybox="gallery" id="{{tarea.id_tarea}}"class="button" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="myFunction(this.id)">Finalizar</a>
+            <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" >Modificar Tarea</button></a>
           </div>
         </span>
       </div>
