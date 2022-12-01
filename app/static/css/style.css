@@ -1,24 +1,30 @@
+@font-face {
+    font-family: "Lettersss";
+    src: url("font/Letters_for_Learners.ttf");
+}
+
+.joined {
+  /*display: grid;*/
+  /*grid-template-columns: 1fr auto;*/
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
+
 *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: Poppins;
 }
 
 body{
-    width: 100%;
-    height: 100vh;
-    display: block;  /*Cambiar el display para que ocupe toda la pantalla*/
-    align-items: center;
-    justify-content: center;
-    background-color: slateblue;
-    font-family: Poppins;
+    background-color: #c4d9a9;
+	font-family: 'Scholar', sans-serif;
 }
+
 .logo{
     width: 100px;
     /* border: 2px solid black; */
@@ -32,21 +38,50 @@ body{
     line-height: 20px;
 }
 
+.login,.bg-light{
+    height: 100%;
+    background-color: #fbfeb2;
+}
+
+.container-fluid{
+    background-color: #fbfeb2;
+}
+
+.Recuadro{
+    width: 100%;
+    height: 50%;
+    padding-left: 30%;
+    
+}
+
+.Nombre-usuario{
+    width: 100%;
+    text-align: center;
+    font-family: Lettersss;
+}
+
+.col{
+    background-color: #fbfeb2;
+    padding-top: 8%;
+}
+
+.first-row{
+    background-color: #fbfeb2;
+    height: 100%;
+    padding-top: 5%;
+}
+.col-md-4{
+    height: 50%;
+}
+
 .main{
     width: 100%;
     height: auto;
     /* border: 2px solid black; */
     display: flex;
-    align-items: center;
+	align-items: center;
     justify-content: space-between;
 
-}
-
-img{
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
 }
 
 .chat-container, .chat-container2{
@@ -230,6 +265,7 @@ svg{
     justify-content: space-between;
     flex-direction: column;
 }
+
 button{
     background: slateblue;
     color: white;
@@ -266,7 +302,7 @@ button{
     clear: both;
     display: table;
   }
-  
+  /*
   .chat-box img {
     float: left;
     max-width: 60px;
@@ -279,14 +315,7 @@ button{
     float: right;
     margin-left: 20px;
     margin-right:0;
-  }
-
-.login {
-  float: center;
-  margin: auto;
-  width: 50%;
-  padding: 10px; 
-}
+  }*/
   /*
   .time-right {
     float: right;

@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'tecnogurus.apps.TecnogurusConfig',# ESTABA como 'tecnogurus.apps.TecnogurusConfig'
-    'tecnogurus',
+    'tecnogurus.apps.TecnogurusConfig',
 ]
 
 MIDDLEWARE = [

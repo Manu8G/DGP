@@ -1,0 +1,158 @@
+
+{% extends "base.html" %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	
+		<script src=
+		"https://code.jquery.com/jquery-3.6.0.min.js">
+		    </script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+	<style>
+
+        *{
+            font = 
+            src=
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            background-color: #fbfeb2;
+            padding: 10px;
+          }
+          
+          .grid-container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+          }
+        img{
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            hover: fi
+        }
+
+        img:active{
+            filter : grayscale(100%);
+        }
+
+        .text-center {
+            text-align: center;
+            padding: 15px 32px;
+
+          }
+          .button {
+            background-color: #dbbf9e;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+          }
+          h2{
+            text-align:center;
+          }
+          body {
+            min-height: 100%;
+          }
+    </style>
+    
+
+   
+
+</head>
+
+<body style="background-color:#c4d9a9">
+	
+     <h2>INTRODUCE TU USUARIO</h2>
+  
+       
+      <div style="padding:15px 1px">
+        <input type="text" id="tbuser" placeholder="NOMBRE" maxlength="20">
+      </div>
+    </div>
+	<div class="grid-container">
+        <div><img id="fuente" src="https://api.arasaac.org/api/pictograms/3273?download=false" onclick="addfuente()"></div>
+        <div><img id="pajaro" src="https://api.arasaac.org/api/pictograms/2490?download=false" onclick="addpajaro()"></div>
+        <div><img id="museo" src="https://api.arasaac.org/api/pictograms/6566?download=false" onclick="addmuseo()"></div>
+        <div><img id="parque" src="https://api.arasaac.org/api/pictograms/2859?download=false"onclick="addparque()"></div>
+    </div>
+
+    
+    <div class="text-center">
+        <input type="button" id="input_btn" class="button" value="LOGIN"/>
+        
+    </div>
+    
+	
+</body>
+<script language="javascript" type="text/javascript">
+    
+	const nombres = [];
+	var us = document.getElementById('tbuser').value;
+	console.log(us)
+	nombres.push(us)
+	function addfuente(){
+		nombres.push('1');
+	}
+	function addpajaro(){
+		nombres.push('2');
+	}
+	function addmuseo(){
+		nombres.push('3');
+	}
+	function addparque(){
+		nombres.push('4');
+	}
+	
+$(function(){
+	console.log("llega a function")
+  $("#input_btn").bind("click",function(){
+	console.log("llega a bind")
+    arr = nombres
+	$.ajaxSettings.traditional = true;
+    $.ajax({
+      type:'POST',
+      url:'prueba',
+      data : {'arr[]': arr, csrfmiddlewaretoken: '{{ csrf_token }}' },    
+      //data:{arr:arr},//**I want pass the arr to django**
+      success:function(data){
+        if (data == 'perfectx2'){
+          window.location.href = 'login_ok.html';
+        }
+        else{
+          window.location.href = 'failed_login.html';
+        }
+      },
+      error:function(data){alert("failure");}
+    });
+	console.log("pasa ajax")
+  });
+})
+</script>
+		
+
+
+	
+
+    
+</body>
+</html>
+
+{%endblock%}
