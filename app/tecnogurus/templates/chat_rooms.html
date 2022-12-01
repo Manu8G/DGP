@@ -1,0 +1,25 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+	<h3> <b>Chat de la clase a la que perteneces:</b></h2>
+	<p><a href="room/{{ curso }}">{{ curso }}</a></p>
+	
+	<br>
+	<p>Escriba el nombre de otro chat que quieras usar</p>
+    <input id="room-name-input" type="text" size="100"><br>
+    <input id="room-name-submit" type="button" value="Enter">
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/room/' + roomName + '/';
+        };
+    </script>
+{% endblock %}

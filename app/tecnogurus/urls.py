@@ -3,9 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('chat', views.chat, name='chat'),
-    path('friend/<str:pk>', views.detail, name="detail"),
-    path('sent_msg/<str:pk>', views.sentMessages, name = "sent_msg"),
-    path('rec_msg/<str:pk>', views.receivedMessages, name = "rec_msg"),
-    path('notification', views.chatNotification, name = "notification"),
+    path('chat_rooms', views.chat_rooms, name='chat_rooms'),
+    path('room/<str:room_name>/', views.room, name="room"),
 ]
