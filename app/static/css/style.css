@@ -24,6 +24,7 @@ body{
     background-color: #c4d9a9;
 	font-family: 'Scholar', sans-serif;
 }
+
 .logo{
     width: 100px;
     /* border: 2px solid black; */
@@ -338,6 +339,7 @@ svg{
     justify-content: space-between;
     flex-direction: column;
 }
+
 button{
     background: slateblue;
     color: white;
