@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-from .models import Profile, Friend
-
-def index(request):
-    user = request.user.profile
-    friends = user.friends.all()
-    context = {"user": user, "friends": friends}
-    return render(request, 'tecnogurus/index.html', context)
-
-def detail(request,pk):
-    friend = Friend.object.get(profile_id=pk)
-    context = {"friend": friend}
-    return render(request, "tecnogurus/detail.html", context)
-=======
 from cgi import print_arguments
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
@@ -38,4 +23,3 @@ def chat_rooms(request):
 
 def room(request, room_name):
     return render(request, "room.html", {"room_name": room_name})
->>>>>>> prueba_luis
