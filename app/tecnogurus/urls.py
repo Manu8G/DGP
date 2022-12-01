@@ -3,9 +3,13 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('chat', views.chat, name='chat'),
-    path('friend/<str:pk>', views.detail, name="detail"),
-    path('sent_msg/<str:pk>', views.sentMessages, name = "sent_msg"),
-    path('rec_msg/<str:pk>', views.receivedMessages, name = "rec_msg"),
-    path('notification', views.chatNotification, name = "notification"),
+    path('chat_rooms', views.chat_rooms, name='chat_rooms'),
+    path('room/<str:room_name>/', views.room, name="room"),
+    path('login_picto', views.login_picto, name='login_picto'),
+    path('buscador.html', views.buscador, name='buscador'),
+    path('login_ok.html', views.login_ok, name='login_ok'),
+    path('failed_login.html', views.failed_login, name='failed_login'),
+    path('request_login.html', views.request_login, name='request_login'),
+    path('prueba', views.prueba, name='prueba'),
+    path('fin_tarea', views.fin_tarea, name='fin_tarea'),
 ]

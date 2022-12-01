@@ -1,67 +1,90 @@
 from cgi import print_arguments
 from django.shortcuts import render, redirect
-from .models import ChatMessage, Profile, Friend
-from .forms import ChatMessageForm
 from django.http import JsonResponse
+from .models import Alumno, Curso, Usuario, Tarea
 import json
 
 def index(request):
     context={}
     return render(request, "index.html", context)
 
-def chat(request):
-    user = request.user.profile
-    friends = user.friends.all()
-    context = {"user": user, "friends": friends}
-    return render(request, "chat.html", context)
+
+def chat_rooms(request):
+    usuario = request.user
+    busqueda = Alumno.objects.filter(user=request.user)
+
+    if busqueda:
+        cursos = Curso.objects.filter(id_curso=busqueda[0].id_curso.id_curso)
+        curso = cursos[0]
+    else:
+        curso = ""
+
+    return render(request, "chat_rooms.html", {"curso": curso}) 
 
 
-def detail(request,pk):
-    friend = Friend.objects.get(profile_id=pk)
-    user = request.user.profile
-    profile = Profile.objects.get(id=friend.profile.id)
-    chats = ChatMessage.objects.all()
-    rec_chats = ChatMessage.objects.filter(msg_sender=profile, msg_receiver=user, seen=False)
-    rec_chats.update(seen=True)
-    form = ChatMessageForm()
-    if request.method == "POST":
-        form = ChatMessageForm(request.POST)
-        if form.is_valid():
-            chat_message = form.save(commit=False)
-            chat_message.msg_sender = user
-            chat_message.msg_receiver = profile
-            chat_message.save()
-            return redirect("detail", pk=friend.profile.id)
-    context = {"friend": friend, "form": form, "user":user, 
-               "profile":profile, "chats": chats, "num": rec_chats.count()}
-    return render(request, "detail.html", context)
-
-def sentMessages(request, pk):
-    user = request.user.profile
-    friend = Friend.objects.get(profile_id=pk)
-    profile = Profile.objects.get(id=friend.profile.id)
-    data = json.loads(request.body)
-    new_chat = data["msg"]
-    new_chat_message = ChatMessage.objects.create(body=new_chat, msg_sender=user, msg_receiver=profile, seen=False )
-    print(new_chat)
-    return JsonResponse(new_chat_message.body, safe=False)
-
-def receivedMessages(request, pk):
-    user = request.user.profile
-    friend = Friend.objects.get(profile_id=pk)
-    profile = Profile.objects.get(id=friend.profile.id)
-    arr = []
-    chats = ChatMessage.objects.filter(msg_sender=profile, msg_receiver=user)
-    for chat in chats:
-        arr.append(chat.body)
-    return JsonResponse(arr, safe=False)
+def room(request, room_name):
+    return render(request, "room.html", {"room_name": room_name})
 
 
-def chatNotification(request):
-    user = request.user.profile
-    friends = user.friends.all()
-    arr = []
-    for friend in friends:
-        chats = ChatMessage.objects.filter(msg_sender__id=friend.profile.id, msg_receiver=user, seen=False)
-        arr.append(chats.count())
-    return JsonResponse(arr, safe=False)
+def login_picto(request):
+    contra = Usuario.password
+    user = Usuario.objects.all()
+    users = Usuario.objects.all().count
+    
+    return render(request, 'login_picto.html', context={'contra':contra, 'user':user, 'users':users})
+
+
+def request_login(request):
+   return render(request, 'request_login.html')
+
+
+def buscador(request):
+    return render(request, 'buscador.html')
+
+
+def login_ok(request):
+    return render(request, 'login_ok.html')
+
+
+def failed_login(request):
+    return render(request, 'failed_login.html')
+
+
+def prueba(request):
+    if request.method == 'POST':
+        arr = request.POST.getlist('arr[]')
+        us = arr[0]
+        prueba = ''
+        cont = ''
+        cont += arr[1]
+        cont += arr[2]
+        cont += arr[3]
+        cont += arr[4]
+        guardar = 'nok'
+
+        user = Usuario.objects.all()
+        for u in user:
+            if u.usuario == us:
+                prueba = 'perfect'
+                if u.password == cont:
+                    prueba = 'perfectx2'
+                    JsonResponse(prueba, safe=False)
+                
+            else:
+                prueba = 'fallo'
+
+        
+            
+        return JsonResponse(prueba, safe=False)
+    else:
+        return JsonResponse(guardar, safe=False)
+
+
+def fin_tarea(request):
+    num_tareas = Tarea.objects.all().count
+    id_t = Tarea.id_tarea
+    tarea_p = Tarea.objects.all()
+    return render(
+        request, 'fin_tarea.html', 
+        context={'num_tareas':num_tareas, 'id_t':id_t, 'tarea_p':tarea_p}
+    )
