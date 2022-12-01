@@ -2,6 +2,7 @@ from cgi import print_arguments
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Alumno, Curso, Usuario, Tarea
+from .forms import  modificarTareaForm, crearTareaForm
 import json
 
 def index(request):
@@ -79,6 +80,18 @@ def prueba(request):
     else:
         return JsonResponse(guardar, safe=False)
 
+def borrar_tarea(request):
+    msg1 = 'ok'
+    if request.method == 'POST':
+        arr = request.POST.getlist('borrar[]')
+        a_borrar = arr[0]
+        tar = Tarea.objects.all()
+        for t in tar:
+            if t.id_tarea == a_borrar:
+                t.delete()
+
+        return JsonResponse(a_borrar, safe=False)
+
 
 def fin_tarea(request):
     num_tareas = Tarea.objects.all().count
@@ -88,3 +101,39 @@ def fin_tarea(request):
         request, 'fin_tarea.html', 
         context={'num_tareas':num_tareas, 'id_t':id_t, 'tarea_p':tarea_p}
     )
+
+
+def modificarTarea(request, id_tarea):
+
+    tarea=Tarea.objects.get(id_tarea=id_tarea)
+    form=modificarTareaForm(tarea)
+    
+    if request.method == "POST":
+        form = modificarTareaForm(request.POST, instance=tarea)
+        if form.is_valid():
+            tarea = form.save(commit=False)
+            tarea.save()
+            return redirect("index")
+
+    else:
+        form = modificarTareaForm(instance=tarea)
+
+    return render (request, "modificarTarea.html",{'form': form,'tarea':tarea,'id_tarea':id_tarea})
+    
+def listaTarea(request):
+    tareas=Tarea.objects.all()
+    return render(request, "listaTarea.html", {'tareas':tareas})
+    
+def crearTarea(request):
+    form=crearTareaForm()
+    if request.method == "POST":
+        form = crearTareaForm(request.POST)
+        if form.is_valid():
+            tarea = form.save(commit=False)
+            tarea.save()
+            return redirect("index")
+
+    else:
+        form = crearTareaForm()
+
+    return render(request, "crearTarea.html", {'form': form})

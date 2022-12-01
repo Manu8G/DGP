@@ -44,7 +44,82 @@ body{
 
 .container-fluid{
     background-color: #fbfeb2;
+    text-align: center;
+    padding-top: 5%;
 }
+
+.primary-btn {
+    background-color:#dbbf9e;
+    border: none;
+    color: white;
+    padding: 8px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.info-tareas{
+    margin-top: 4%;
+}
+
+.container { 
+    position: relative;
+    background-color:#fbfeb2;
+}    
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    background-color: #fbfeb2;
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid black;
+    text-align: center;
+    font-size: 30px;
+  }
+.imagen-login-pic{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    hover: fi
+}
+
+.imagen-login-pic:active{
+    filter : grayscale(100%);
+}
+
+.text-center {
+    text-align: center;
+
+  }
+
+  .button-login-pic {
+    background-color: #dbbf9e;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  .titulo-pic{
+    text-align:center;
+    height: 0.5vh;
+  }
+
+  .cajita{
+    padding: 3px;
+    padding-left: 30%;
+  }
 
 .Recuadro{
     width: 100%;
@@ -55,8 +130,7 @@ body{
 
 .Nombre-usuario{
     width: 100%;
-    text-align: center;
-    font-family: Lettersss;
+    color: #000;
 }
 
 .col{
@@ -275,6 +349,10 @@ button{
     font-size: 14px;
     margin-top: 10px;
     
+}
+
+.button-2{
+    padding-left: 5px;
 }
 
 
