@@ -1,74 +1,18 @@
-<head>
-  <title>Finalizar Tarea</title>
-  <style>
-    @font-face {
-      font-family: myFirstFont;
-      src: url(https://www.dafont.com/es/letters-for-learners.font);
-   }
-   
-   * {
-      font-family: myFirstFont;
-   }
-    a {
-      color: #FFFFFF;
-      text-decoration: none;
-    }
-    
-    .primary-btn {
-      background-color:#dbbf9e  
-    }
-    
-    .primary-btn {
-      line-height: 36px;
-      padding-left: 30px;
-      padding-right: 30px;
-      border-radius: 25px;
-      border: none;
-      color: #fff;
-      display: inline-block;
-      font-weight: 500;
-      position: relative;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-      text-transform: uppercase;
-      position: relative;
-    }
-    
-    .primary-btn {
-      color: black;
-      border: 1px solid #fff;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-    }
-
-    .container { 
-      position: relative;
-      background-color:#fbfeb2;
-    }
-    
-    
-  </style>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css">
-
-</head>
+{% extends "base.html" %}
 {% block content %}
-<body style="background-color:#c4d9a9">
 <h1>Tareas</h1>
 
+  {%if num_tareas == 1%}
+  <p>Actualmente hay  {{num_tareas}} tarea</p>
+  {%else%}
   <p>Actualmente hay  {{num_tareas}} tareas</p>
-
+  {%endif %}
+  <div style="position:absolute; top:90px; left:70%;">
+    <a href="{% url 'crearTarea' %}" ><button  type="button" >Crear Tarea</button></a>
+ </div>
     {% for tarea in tarea_p %}
     <div class="container">
-      <ul>
+      <ul class="info-tareas">
         <li> Id Tarea: {{ tarea.id_tarea }}</li>
         <li> Tipo: {{tarea.tipo_tarea}}</li>
         <li> Descripcion: {{tarea.descripcion}}</li>
@@ -76,8 +20,11 @@
       <div class="popup">
         <span class="input-group-btn">
         <!--<button id="boton" onclick="myFunction()">Finalizar</button>-->
-          <div style="position:absolute; top:20px; right:0px;">
-            <a data-fancybox="gallery" class="primary-btn" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg">Finalizar</a>
+          <div style="position:relative; left:0px;">
+              <a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>
+          </div>
+          <div style="position:absolute; right:0px; top:0px;">
+            <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" style="width:250px">Modificar Tarea</button></a>
           </div>
         </span>
       </div>
@@ -85,14 +32,3 @@
     {% endfor %}
 
 {% endblock %}
-
-
-<script>
-function myFunction() {
-  //alert("¡Buen trabajo! ╰(*°▽°*)╯");
-
-}
-
-
-</script>
-</body>

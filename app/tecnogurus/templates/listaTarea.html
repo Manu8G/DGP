@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="containerListT">
+	<div class="ListaTareas">
+		<h1>Lista Tareas</h1>
+			
+		<p>
+		    {% for tarea in tareas %}
+		    <div class="containerTarea">	
+			    <!-- Display Objects -->
+			    <li>{{ tarea.id_tarea }}</li>
+			    <li>{{ tarea.tipo_tarea }}</li>
+			    <li>{{ tarea.descripcion }}</li>
+			    <li>{{ tarea.id_mensaje }}</li>
+			   
+			    <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Modificar Tarea</button></a>
+			    <hr/>
+		    </div>
+		    <!-- If object_list is empty  -->
+		    {% empty %}
+		    <li>No hay tareas.</li>
+		    {% endfor %}
+		</p>
+		
+	</div>
+	<a href="{% url 'index' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>
+</div>
+
+
+
+{% endblock %}
