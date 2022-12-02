@@ -26,6 +26,7 @@ body{
    
     text-transform: uppercase;
 }
+
 .logo{
     width: 100px;
     /* border: 2px solid black; */
@@ -342,6 +343,7 @@ svg{
     justify-content: space-between;
     flex-direction: column;
 }
+
 button{
     background: slateblue;
     color: white;
