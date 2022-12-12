@@ -38,10 +38,27 @@ class Profesor(models.Model):
         return self.nombre
 
 
+class Image(models.Model):
+    id_image        = models.CharField(max_length = 10)
+    ruta            = models.CharField(max_length = 140)
+
+    def __str__(self):
+        return self.id_image
+
+
+class ImageList(models.Model):
+    id_image_list        = models.CharField(max_length = 20)
+    images_id            = models.ManyToManyField(Image)
+
+    def __str__(self):
+        return self.id_image_list
+
+
 class Tarea(models.Model):
     id_tarea    = models.CharField(max_length = 10)
     tipo_tarea  = models.CharField(max_length = 20)
     descripcion = models.CharField(max_length = 140)
+    image_list  = models.ForeignKey(ImageList, on_delete = models.CASCADE, null = True)
 
     def __str__(self):
         return self.id_tarea
@@ -67,20 +84,4 @@ class Menu(models.Model):
     def __str__(self):
         return self.id_tarea.id_tarea
 
-
-class ImageList(models.Model):
-    id_image_list        = models.ForeignKey(Tarea, on_delete = models.CASCADE)
-    images_id            = models.ArrayField(model_container=iamge)
-
-    def __str__(self):
-        return self.id_image_list
-
-
-class image(models.Model):
-    id_image        = models.ForeignKey(Tarea, on_delete = models.CASCADE)
-    name            = models.CharField(max_length = 40)
-    ruta            = models.CharField(max_length = 140)
-
-    def __str__(self):
-        return self.id_image
 
