@@ -66,3 +66,21 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.id_tarea.id_tarea
+
+
+class ImageList(models.Model):
+    id_image_list        = models.ForeignKey(Tarea, on_delete = models.CASCADE)
+    images_id            = models.ArrayField(model_container=iamge)
+
+    def __str__(self):
+        return self.id_image_list
+
+
+class image(models.Model):
+    id_image        = models.ForeignKey(Tarea, on_delete = models.CASCADE)
+    name            = models.CharField(max_length = 40)
+    ruta            = models.CharField(max_length = 140)
+
+    def __str__(self):
+        return self.id_image
+

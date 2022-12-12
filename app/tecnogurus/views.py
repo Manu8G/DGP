@@ -124,6 +124,11 @@ def listaTarea(request):
     tareas=Tarea.objects.all()
     return render(request, "listaTarea.html", {'tareas':tareas})
     
+def listaImagenes(request, id_image_list):
+    lista=ImageList.objects.get(id_image_list=id_image_list)
+    Limages=lista.images_id  #Ni puta idea de si esto va o no
+    return render(request, "imagenesPaso.html", {'Limages':Limages})
+
 def crearTarea(request):
     form=crearTareaForm()
     if request.method == "POST":
