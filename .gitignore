@@ -1,3 +1,6 @@
-**/__pycache__/
-**/migaçrations/
+__pycache__/
+*.pyc
+migrations/
+0001_initial.cpython-310.pyc
+app/tecnogurus/migrations/__pycache__/0002_usuario.cpython-310.pyc
 db.sqlite3
