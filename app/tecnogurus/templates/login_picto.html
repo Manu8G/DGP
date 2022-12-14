@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+     <h5 class="titulo-pic">INTRODUCE TU USUARIO</h5>
+      <div class="cajita">
+        <input type="text" id="tbuser" placeholder="t u nombre aqui">
+      </div>
+    </div>
+	<div class="grid-container">
+        <div><img id="fuente" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/3273?download=false" onclick="addfuente()"></div>
+        <div><img id="pajaro" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/2490?download=false" onclick="addpajaro()"></div>
+        <div><img id="museo" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/6566?download=false" onclick="addmuseo()"></div>
+        <div><img id="parque" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/2859?download=false"onclick="addparque()"></div>
+    </div>
+
+    
+    <div class="text-center">
+        <input type="button" id="input_btn" class="button-login-pic" value="LOGIN"/>
+    </div>
+    
+	
+
+<script language="javascript" type="text/javascript">
+    
+	const nombres = [];
+	var us = document.getElementById('tbuser').value;
+	console.log(us)
+	nombres.push(us)
+	function addfuente(){
+		nombres.push('1');
+	}
+	function addpajaro(){
+		nombres.push('2');
+	}
+	function addmuseo(){
+		nombres.push('3');
+	}
+	function addparque(){
+		nombres.push('4');
+	}
+	
+$(function(){
+	console.log("llega a function")
+  $("#input_btn").bind("click",function(){
+	console.log("llega a bind")
+    arr = nombres
+	$.ajaxSettings.traditional = true;
+    $.ajax({
+      type:'POST',
+      url:'prueba',
+      data : {'arr[]': arr, csrfmiddlewaretoken: '{{ csrf_token }}' },    
+      //data:{arr:arr},//**I want pass the arr to django**
+      success:function(data){
+        if (data == 'perfectx2'){
+          window.location.href = 'login_ok.html';
+        }
+        else{
+          window.location.href = 'failed_login.html';
+        }
+      },
+      error:function(data){alert("failure");}
+    });
+	console.log("pasa ajax")
+  });
+})
+</script>
+
+{%endblock%}

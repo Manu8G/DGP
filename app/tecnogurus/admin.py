@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import Curso, Alumno, Profesor, Curso, Tarea, Comanda, Menu
+from .models import Curso, Alumno, Profesor, Curso, Tarea, Comanda, Menu, Image, ImageList
 
 # Register your models here.
 
+admin.site.register(Image)
+
+admin.site.register(ImageList)
 
 admin.site.register(Curso)
 

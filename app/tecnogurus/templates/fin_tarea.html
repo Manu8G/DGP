@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Tareas</h1>
+
+  <p>Actualmente hay  {{num_tareas}} tareas</p>
+
+  <div style="position:absolute; top:20px; left:70%;">
+    <a href="{% url 'crearTarea' %}" ><button type="button" >Crear Tarea</button></a>
+ </div>
+
+    {% for tarea in tarea_p %}
+    <div class="container">
+      <ul class="info-tareas">
+        <li> Id Tarea: {{ tarea.id_tarea }}</li>
+        <li> Tipo: {{tarea.tipo_tarea}}</li>
+        <li> Descripcion: {{tarea.descripcion}}</li>
+      </ul>
+      <div class="popup">
+        <span class="input-group-btn">
+        <!--<button id="boton" onclick="myFunction()">Finalizar</button>-->
+
+        <div style="position:absolute; top:20px;">
+            <a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>
+
+            <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" >Modificar Tarea</button></a>
+          </div>
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+

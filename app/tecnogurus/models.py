@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+class Usuario(models.Model):
+    usuario     = models.CharField(max_length = 10)
+    password    = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.usuario
+
 class Curso(models.Model):
     id_curso    = models.CharField(max_length = 10)
 
@@ -31,10 +38,27 @@ class Profesor(models.Model):
         return self.nombre
 
 
+class Image(models.Model):
+    id_image        = models.CharField(max_length = 10)
+    imagen          = models.FileField(upload_to='img', null=True)
+
+    def __str__(self):
+        return self.id_image
+
+
+class ImageList(models.Model):
+    id_image_list        = models.CharField(max_length = 20)
+    images_id            = models.ManyToManyField(Image)
+
+    def __str__(self):
+        return self.id_image_list
+
+
 class Tarea(models.Model):
     id_tarea    = models.CharField(max_length = 10)
     tipo_tarea  = models.CharField(max_length = 20)
     descripcion = models.CharField(max_length = 140)
+    image_list  = models.ForeignKey(ImageList, on_delete = models.CASCADE, null = True)
 
     def __str__(self):
         return self.id_tarea
@@ -59,3 +83,5 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.id_tarea.id_tarea
+
+
