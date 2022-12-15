@@ -1,24 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    pic = models.ImageField(upload_to="img", blank=True, null=True)
-    friends = models.ManyToManyField('Friend', related_name = "my_friends")
-
-    def __str__(self):
-        return self.name
-
-class Friend(models.Model):
-    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return profile.name
-
-
-
-# ESTABA De aqui para abajo ya estaba
 
 class Usuario(models.Model):
     usuario     = models.CharField(max_length = 10)
@@ -27,60 +9,65 @@ class Usuario(models.Model):
     def __str__(self):
         return self.usuario
 
-
 class Curso(models.Model):
     id_curso    = models.CharField(max_length = 10)
-    tutor       = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.id_curso
 
 
 class Alumno(models.Model):
-    usuario             = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    nombre              = models.CharField(max_length = 10)
+    user                = models.OneToOneField(User, on_delete=models.CASCADE)
+    pic                 = models.ImageField(upload_to="img", blank=True, null=True)
     id_curso            = models.ForeignKey(Curso, on_delete = models.CASCADE)
     usuario_pictograma  = models.BooleanField(default = False)
     tipo_discapacidad   = models.CharField(max_length = 20)
 
     def __str__(self):
-        return self.usuario.usuario
+        return self.nombre
 
 
 class Profesor(models.Model):
-    usuario     = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-    id_curso    = models.CharField(max_length = 10)
+    nombre              = models.CharField(max_length = 10)
+    user                = models.OneToOneField(User, on_delete=models.CASCADE)
+    pic                 = models.ImageField(upload_to="img", blank=True, null=True)
+    id_curso            = models.ForeignKey(Curso, on_delete = models.CASCADE)
 
     def __str__(self):
-        return self.usuario.usuario
+        return self.nombre
 
 
-class Admin(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-
-    def __str__(self):
-        return self.usuario.usuario
-
-
-class Chat(models.Model):
-    id_chat = models.CharField(max_length = 10)
+class Image(models.Model):
+    id_image        = models.CharField(max_length = 35)
+    imagen          = models.FileField(upload_to='img', null=True)
 
     def __str__(self):
-        return self.id_chat
+        return self.id_image
 
+'''
+images_uploaded = [
 
-class Mensaje(models.Model):
-    id_mensaje  = models.CharField(max_length = 10)
-    id_chat     = models.ForeignKey(Chat, on_delete = models.CASCADE)
+]
+
+images_list = [
     
+]
+añadir boton crear nueva lista de imagenes
+'''
+class ImageList(models.Model):
+    id_image_list        = models.CharField(max_length = 20)
+    images_id            = models.ManyToManyField(Image)
+
     def __str__(self):
-        return self.id_mensaje
+        return self.id_image_list
 
 
 class Tarea(models.Model):
     id_tarea    = models.CharField(max_length = 10)
     tipo_tarea  = models.CharField(max_length = 20)
     descripcion = models.CharField(max_length = 140)
-    id_mensaje  = models.ForeignKey(Mensaje, on_delete = models.CASCADE)
+    image_list  = models.ForeignKey(ImageList, on_delete = models.CASCADE, null = True)
 
     def __str__(self):
         return self.id_tarea
@@ -105,3 +92,5 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.id_tarea.id_tarea
+
+

@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.primary-btn {
+      line-height: 36px;
+      padding-left: 30px;
+      padding-right: 30px;
+      border-radius: 25px;
+      border: none;
+      color: #fff;
+      display: inline-block;
+      font-weight: 500;
+      position: relative;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      text-transform: uppercase;
+      position: relative;
+    }
+    
+    .primary-btn {
+      color: black;
+      border: 1px solid #fff;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+    }
+    
+    .primary-btn {
+      background-color:#dbbf9e  
+    }
+
+</style>
+
+<ul>
+<div class="containerCrearT">
+	<div class="formularioCrearT">
+		<h1>Crear Tarea</h1>
+		
+		<form action="crearTarea" method="POST">
+			{% csrf_token %}
+   			{{ form }}
+          <a href="{% url 'creaListaImagenes' %}"><button  type="button" >Crear nueva lista de imagenes</button></a>
+		      <button type = "submit" id = "submit">Guardar</button>
+		</form>
+	</div>
+	<a href="{% url 'index' %}"><button  type="button" >Volver</button></a>
+</div>
+</ul>
+		      		
+	<!--
+    class Author(models.Model):
+    name = models.CharField(max_length=50)
+    age = models.PositiveIntegerField(null=True, blank=True)
+    alias = models.CharField(max_length=50, null=True, blank=True)
+    goes_by = models.CharField(max_length=50, null=True, blank=True)
+    
+    
+    Author.objects.create(name='Margaret Smith', goes_by='Maggie')
+  -->
+
+{% endblock %}

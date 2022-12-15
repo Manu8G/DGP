@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="containerModT">
+	<div class="formularioModT">
+		<h1>Imagenes</h1>
+		<form action="creaListaImagenes" method="POST">
+			{% csrf_token %}
+   			{{ form }}
+		      <button type = "submit" id = "submit" >Guardar</button>
+		</form>
+		<p>
+		</p>
+	</div>
+	<a href="{% url 'fin_tarea' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>
+</div>
+
+{% endblock %}

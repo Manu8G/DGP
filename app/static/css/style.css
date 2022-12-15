@@ -1,19 +1,30 @@
+@font-face {
+    font-family: "Lettersss";
+    src: url("font/Letters_for_Learners.ttf");
+}
+
+.joined {
+  /*display: grid;*/
+  /*grid-template-columns: 1fr auto;*/
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: Poppins;
 }
 
 body{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: slateblue;
-    font-family: Poppins;
+    background-color: #c4d9a9;
+	font-family: 'Scholar', sans-serif;
 }
+
 .logo{
     width: 100px;
     /* border: 2px solid black; */
@@ -27,26 +38,129 @@ body{
     line-height: 20px;
 }
 
+.login,.bg-light{
+    height: 100%;
+    background-color: #fbfeb2;
+}
+
+.container-fluid{
+    background-color: #fbfeb2;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.primary-btn {
+    background-color:#dbbf9e;
+    border: none;
+    color: white;
+    padding: 8px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.info-tareas{
+    margin-top: 4%;
+}
+
+.container { 
+    position: relative;
+    background-color:#fbfeb2;
+}    
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    background-color: #fbfeb2;
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid black;
+    text-align: center;
+    font-size: 30px;
+  }
+.imagen-login-pic{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    hover: fi
+}
+
+.imagen-login-pic:active{
+    filter : grayscale(100%);
+}
+
+.text-center {
+    text-align: center;
+
+  }
+
+  .button-login-pic {
+    background-color: #dbbf9e;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  .titulo-pic{
+    text-align:center;
+    height: 0.5vh;
+  }
+
+  .cajita{
+    padding: 3px;
+    padding-left: 30%;
+  }
+
+.Recuadro{
+    width: 100%;
+    height: 50%;
+    padding-left: 30%;
+    
+}
+
+.Nombre-usuario{
+    width: 100%;
+    color: #000;
+}
+
+.col{
+    background-color: #fbfeb2;
+    padding-top: 8%;
+}
+
+.first-row{
+    background-color: #fbfeb2;
+    height: 100%;
+    padding-top: 5%;
+}
+.col-md-4{
+    height: 50%;
+}
+
 .main{
     width: 100%;
     height: auto;
     /* border: 2px solid black; */
     display: flex;
-    align-items: center;
+	align-items: center;
     justify-content: space-between;
 
 }
 
-img{
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
-
 .chat-container, .chat-container2{
-    width: 350px;
-    height: 580px;
+    width: 100%;
+    height: 100%;
     /* border: 2px solid black; */
     background-color: white;
     border-radius: 30px;
@@ -84,7 +198,7 @@ img{
 
 .friends-container{
     width: 100%;
-    height: 380px;
+    height: 86%;
     /* border: 2px solid black; */
     overflow: auto;
 }
@@ -165,7 +279,7 @@ svg{
 
 .identity{
     width: 100%;
-    height: 80px;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -176,7 +290,7 @@ svg{
 
 .sub-container{
 
-    height: 100%;
+    height: 90%;
     width: 100%;
     /* border: 2px solid blue; */
     padding: 10px;
@@ -190,7 +304,7 @@ svg{
 
 .chat-body{
     width: 100%;
-    height: 280px;
+    height: 85%;
     /* border: 2px solid slateblue; */
     overflow: auto;
     /* display: flex;
@@ -200,7 +314,7 @@ svg{
 
 #myform{
     width: 100%;
-    height: auto;
+    height: 12%;
     /* border: 2px solid black; */
     /* display: flex;
     justify-content: space-between;
@@ -225,6 +339,7 @@ svg{
     justify-content: space-between;
     flex-direction: column;
 }
+
 button{
     background: slateblue;
     color: white;
@@ -238,6 +353,61 @@ button{
     
 }
 
+.button-2{
+    padding-left: 5px;
+}
+
+
+
+/*
+
+*/
+.chat-box {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1; /*f1f1f1*/
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .received {
+    border-color: #ccc;
+    background-color: #ddd;/*ddd*/
+  }
+  
+  .chat-box::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  /*
+  .chat-box img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  .chat-box img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }*/
+  /*
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  .time-left {
+    float: left;
+    color: #999;
+  }
+  
+  
+  */
+/*
 .chat-box-received, .chat-box-sent{
     width: 200px;
     height: auto;
@@ -246,7 +416,7 @@ button{
     color: white;
     margin-left: auto;
     margin-bottom: 10px;
-    display: flex;
+    display: block;
     align-items: center;
     padding:10px 10px;
     border-radius: 10px;
@@ -258,3 +428,4 @@ button{
     float: left;
    
 }
+*/
