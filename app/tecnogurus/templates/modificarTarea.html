@@ -46,7 +46,7 @@
 		<form action="modificarTarea" method="POST">
 			{% csrf_token %}
    			{{ form }}
-
+          <a href="{% url 'creaListaImagenes' %}"><button  type="button" >Crear nueva lista de imagenes</button></a>
 		      <button type = "submit" id = "submit" >Guardar</button>
 		</form>
 	</div>

@@ -2,7 +2,7 @@ from cgi import print_arguments
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Alumno, Curso, Usuario, Tarea, ImageList, Image
-from .forms import  modificarTareaForm, crearTareaForm
+from .forms import  modificarTareaForm, crearTareaForm, creaListaImagenesForm
 import json
 
 def index(request):
@@ -126,12 +126,39 @@ def listaTarea(request):
     
 def listaImagenes(request, id_image_list):
     lista=ImageList.objects.get(id_image_list=id_image_list)
-    Limages=lista.images_id  
+    Limages=lista.images_id.all()
     return render(request, "imagenesPaso.html", {'Limages':Limages})
 
+
+
+
+
+
 def creaListaImagenes(request):
-    imagenes=Image.objects.all() 
-    return render(request, "creaListaImagenes.html", {'imagenes':imagenes})
+    form=creaListaImagenesForm()
+    if request.method == "POST":
+        form = creaListaImagenesForm(request.POST)
+        if form.is_valid():
+            ImageList = form.save(commit=False)
+            ImageList.save()
+            return redirect("fin_tarea")
+
+    else:
+        form = creaListaImagenesForm()
+
+    return render(request, "creaListaImagenes.html", {'form': form})
+
+
+    '''
+        imagenes=Image.objects.all() 
+        return render(request, "creaListaImagenes.html", {'imagenes':imagenes})
+    '''
+
+
+
+
+
+
 
 def crearTarea(request):
     form=crearTareaForm()

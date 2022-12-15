@@ -39,7 +39,7 @@ class Profesor(models.Model):
 
 
 class Image(models.Model):
-    id_image        = models.CharField(max_length = 10)
+    id_image        = models.CharField(max_length = 35)
     imagen          = models.FileField(upload_to='img', null=True)
 
     def __str__(self):

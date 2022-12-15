@@ -13,8 +13,8 @@
         <li> Tipo: {{tarea.tipo_tarea}}</li>
         <li> Descripcion: {{tarea.descripcion}}</li>
         <li><a href="{% url 'listaImagenes' tarea.image_list %}" ><button type="button" >Imagenes paso a paso</button></a></li>
-        <li><a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a></li>
         <li><a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" >Modificar Tarea</button></a></li>
+        <li><a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a></li>
       </ul>
       <div class="popup">
         <span class="input-group-btn">

@@ -8,8 +8,8 @@
 		    {% for image in Limages %}
 		    <div class="containerTarea">	
 			    <!-- Display Objects -->
-			    <li><img src="{{ image.ruta }}" alt="image" style="width:100%"/></li>
-			    <li>{{ image.name }}</li>
+			    <a><img src="/static/{{ image.imagen }}" alt="image" style="width:20%"/></a>
+			    <a>{{ image.id_image }}</a>
 			    <hr/>
 		    </div>
 		    <!-- If object_list is empty  -->
@@ -18,7 +18,7 @@
 		    {% endfor %}
 		</p>
 	</div>
-	<a href="{% url 'index' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>
+	<a href="{% url 'fin_tarea' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>
 </div>
 
 {% endblock %}
