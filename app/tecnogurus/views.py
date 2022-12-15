@@ -1,7 +1,7 @@
 from cgi import print_arguments
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import Alumno, Curso, Usuario, Tarea
+from .models import Alumno, Curso, Usuario, Tarea, ImageList, Image
 from .forms import  modificarTareaForm, crearTareaForm
 import json
 
@@ -126,8 +126,12 @@ def listaTarea(request):
     
 def listaImagenes(request, id_image_list):
     lista=ImageList.objects.get(id_image_list=id_image_list)
-    Limages=lista.images_id  #Ni puta idea de si esto va o no
+    Limages=lista.images_id  
     return render(request, "imagenesPaso.html", {'Limages':Limages})
+
+def creaListaImagenes(request):
+    imagenes=Image.objects.all() 
+    return render(request, "creaListaImagenes.html", {'imagenes':imagenes})
 
 def crearTarea(request):
     form=crearTareaForm()

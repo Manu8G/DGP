@@ -45,7 +45,16 @@ class Image(models.Model):
     def __str__(self):
         return self.id_image
 
+'''
+images_uploaded = [
 
+]
+
+images_list = [
+    
+]
+añadir boton crear nueva lista de imagenes
+'''
 class ImageList(models.Model):
     id_image_list        = models.CharField(max_length = 20)
     images_id            = models.ManyToManyField(Image)

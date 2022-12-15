@@ -5,7 +5,6 @@
 <div class="containerListT">
 	<div class="ListaTareas">
 		<h1>Lista Tareas</h1>
-			
 		<p>
 		    {% for tarea in tareas %}
 		    <div class="containerTarea">	
@@ -14,8 +13,7 @@
 			    <li>{{ tarea.tipo_tarea }}</li>
 			    <li>{{ tarea.descripcion }}</li>
 			    <li>{{ tarea.id_mensaje }}</li>
-			   
-			    <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Modificar Tarea</button></a>
+				<!--<a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Modificar Tarea</button></a>-->
 			    <hr/>
 		    </div>
 		    <!-- If object_list is empty  -->

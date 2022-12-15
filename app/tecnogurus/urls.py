@@ -16,4 +16,6 @@ urlpatterns = [
     path('<str:id_tarea>/modificarTarea', views.modificarTarea, name='modificarTarea'),
     path('crearTarea', views.crearTarea, name='crearTarea'),
     path('listaTarea', views.listaTarea, name='listaTarea'),
+    path('<str:id_image_list>/listaImagenes', views.listaImagenes, name='listaImagenes'),
+    path('creaListaImagenes', views.creaListaImagenes, name='creaListaImagenes'),
 ]
