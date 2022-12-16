@@ -4,10 +4,10 @@
 <div class="containerModT">
 	<div class="formularioModT">
 		<h1>Imagenes</h1>
-		<form action="creaListaImagenes" method="POST">
+		<form  method="POST" class="post-form" enctype="multipart/form-data">
 			{% csrf_token %}
-   			{{ form }}
-		      <button type = "submit" id = "submit" >Guardar</button>
+   			{{ form.as_p }}
+		      <button type = "submit" >Guardar</button>
 		</form>
 		<p>
 		</p>
