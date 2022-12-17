@@ -13,7 +13,8 @@
 			    <li>{{ tarea.tipo_tarea }}</li>
 			    <li>{{ tarea.descripcion }}</li>
 			    <li>{{ tarea.id_mensaje }}</li>
-				<!--<a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Modificar Tarea</button></a>-->
+
+				{% comment %}<a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Modificar Tarea</button></a>{% endcomment %}
 			    <hr/>
 		    </div>
 		    <!-- If object_list is empty  -->

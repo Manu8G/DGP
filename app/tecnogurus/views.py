@@ -120,10 +120,31 @@ def modificarTarea(request, id_tarea):
 
     return render (request, "modificarTarea.html",{'form': form,'tarea':tarea,'id_tarea':id_tarea})
     
+
+def duplicarTarea(request):
+    if request.method == 'POST':
+        msg = 'ok'
+        arr = request.POST.getlist('borrar[]')
+        a_dup = arr[0]
+        tar = Tarea.objects.all()
+        for t in tar:
+            if t.id_tarea == a_dup:
+                id = t.id_tarea+'_copia'
+                tipo = t.tipo_tarea
+                desc = t.descripcion
+                id_image = t.id_image_list
+                enc = t.encargado
+                nueva = Tarea.objects.create(id_tarea=id, tipo_tarea=tipo, descripcion=desc, id_image_list=id_image, encargado=enc)
+                return (request, "fin_tarea.html")
+
+        return JsonResponse(a_dup, safe=False)
+
+
 def listaTarea(request):
     tareas=Tarea.objects.all()
     return render(request, "listaTarea.html", {'tareas':tareas})
     
+
 def listaImagenes(request, id_image_list):
     lista=ImageList.objects.get(id_image_list=id_image_list)
     Limages=lista.images_id.all()
@@ -147,12 +168,6 @@ def creaListaImagenes(request):
     return render(request, "creaListaImagenes.html", {'form': form})
 
 
-    '''
-        imagenes=Image.objects.all() 
-        return render(request, "creaListaImagenes.html", {'imagenes':imagenes})
-    '''
-
-
 def editListaImagenes(request):
     lista = get_object_or_404(ImageList.objects.filter(id_image_list=request.GET.get('edit_lista')))
     
@@ -171,8 +186,6 @@ def editListaImagenes(request):
 
 
     return render(request, "creaListaImagenes.html", {'form': form})
-
-
 
 
 def crearTarea(request):

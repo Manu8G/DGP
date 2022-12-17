@@ -45,16 +45,6 @@ class Image(models.Model):
     def __str__(self):
         return self.id_image
 
-'''
-images_uploaded = [
-
-]
-
-images_list = [
-    
-]
-añadir boton crear nueva lista de imagenes
-'''
 class ImageList(models.Model):
     id_image_list        = models.CharField(max_length = 20)
     images_id            = models.ManyToManyField(Image)
@@ -68,6 +58,7 @@ class Tarea(models.Model):
     tipo_tarea  = models.CharField(max_length = 20)
     descripcion = models.CharField(max_length = 140)
     image_list  = models.ForeignKey(ImageList, on_delete = models.CASCADE, null = True)
+    encargado   = models.ForeignKey(Alumno, on_delete = models.CASCADE, default='')
 
     def __str__(self):
         return self.id_tarea
