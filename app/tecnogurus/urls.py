@@ -20,4 +20,5 @@ urlpatterns = [
     path('creaListaImagenes', views.creaListaImagenes, name='creaListaImagenes'),
     path('editListaImagenes', views.editListaImagenes, name='editListaImagenes'),
     path('duplicarTarea', views.duplicarTarea, name='duplicarTarea'),
+    path('tarea/<str:id_tarea>', views.tarea, name='tarea')
 ]

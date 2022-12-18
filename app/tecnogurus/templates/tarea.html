@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head><title>Pagina de Tareas</title></head>
+
+      
+      <div class="container">
+        <ul class="info-tareas">
+          <li> Id Tarea: {{ tarea.id_tarea }}</li>
+          <li> Tipo: {{tarea.tipo_tarea}}</li>
+          <li> Descripcion: {{tarea.descripcion}}</li>
+      	  {%if user.groups.all.0.name == 'Profesor'%}
+          	<li> Asignado a: {{tarea.encargado}}
+		  {% endif %}
+			{% if id_image_list != 'No Pictograma' %}
+<div class="containerListT">
+	<div class="ListaImagenes">
+		<h3>Lista Tareas:</h3>
+
+		<div class="carousel" id="demo-carousel" data-wrap="false" data-interval="false" data-ride="carousel">
+  			<div class="carousel-inner" role="listbox">
+    			{% for image in Limages %}
+      				{% if forloop.first %}
+        				<div class="carousel-item active">
+      				{% else %}
+        				<div class="carousel-item">
+      				{% endif %}
+					{% if image.imagen %}
+          				<img class="img-responsive center-block" src=' /static/{{ image.imagen }} ' alt="Image">
+					{% endif %}
+       				</div>
+    			{%endfor%}
+			 <a class="left carousel-control" href="#demo-carousel" role="button" data-slide="prev">
+        		<span class="icon-prev" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+      		<a class="right carousel-control" href="#demo-carousel" role="button" data-slide="next">
+          		<span class="icon-next" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+			</div>
+
+</script><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+       {%if user.groups.all.0.name == 'Profesor'%}
+       	<a href="{% url 'editListaImagenes' %}?edit_lista={{ id_image_list }}" ><button type="button" value="{{ id_image_list }}" name="edit_lista">Editar Pictogramas</button></a></li>
+		{% endif %}
+	{% endif %}
+      
+	<a href="{% url 'fin_tarea' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>
+    </div>
+{% endblock %}

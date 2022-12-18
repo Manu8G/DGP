@@ -80,6 +80,13 @@ def prueba(request):
     else:
         return JsonResponse(guardar, safe=False)
 
+def tarea(request, id_tarea):
+    tarea=Tarea.objects.get(id_tarea=id_tarea)
+    lista=ImageList.objects.get(id_image_list=tarea.image_list.id_image_list)
+    Limages=lista.images_id.all()
+
+    return render(request, 'tarea.html', {'tarea': tarea, 'Limages':Limages, 'id_image_list':tarea.image_list.id_image_list})
+
 def borrar_tarea(request):
     msg1 = 'ok'
     if request.method == 'POST':

@@ -23,16 +23,11 @@
     <div class="container">
       
       <ul class="info-tareas">
-        <li> Id Tarea: {{ tarea.id_tarea }}</li>
-        <li> Tipo: {{tarea.tipo_tarea}}</li>
-        <li> Descripcion: {{tarea.descripcion}}</li>
-        <li> Asignado a: {{tarea.encargado.nombre}}
-        <li><a href="{% url 'listaImagenes' tarea.image_list %}" ><button type="button" >Imagenes paso a paso</button></a></li>
+		<a href="{% url 'tarea' tarea.id_tarea %}" ><li> Tarea: {{ tarea.id_tarea }}</li></a>
       </ul>
       
       <div class="popup">
         <span class="input-group-btn">
-        <!--<button id="boton" onclick="myFunction()">Finalizar</button>-->
           <div style="position:relative; left:0px;">
               <a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>
           </div>
@@ -42,29 +37,19 @@
 
       {%if user.groups.all.0.name == 'Profesor'%}
       <div class="container">
-        <p>***************************************</p>
-        <ul class="info-tareas">
-          <li> Id Tarea: {{ tarea.id_tarea }}</li>
-          <li> Tipo: {{tarea.tipo_tarea}}</li>
-          <li> Descripcion: {{tarea.descripcion}}</li>
-          <li> Asignado a: {{tarea.encargado}}
-          <li><a href="{% url 'listaImagenes' tarea.image_list %}" ><button type="button" >Imagenes paso a paso</button></a></li>
-        </ul>
-      
 
+      <ul class="info-tareas">
+		<a href="{% url 'tarea' tarea.id_tarea %}" ><li> Tarea: {{ tarea.id_tarea }}</li></a>
+      </ul>
       
       <div style="position:relative; left:0%;">
           <button id="{{tarea.id_tarea}}" class="button-login-pic" type="button" style="width:45%; height:10%" onclick="duplicarTarea(this.id)">Duplicar Tarea</button>
         </div>
      
-
-      
         <div style=" left:50%;top:10% width:100%">
           <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" style="width:45%; height:10%; padding:15px 32px">Modificar Tarea</button></a>
         </div>
       {%endif%}
-
-      
       
     </div>
     {% endfor %}
