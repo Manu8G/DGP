@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+import datetime 
 
 class Usuario(models.Model):
     usuario     = models.CharField(max_length = 10)
@@ -59,6 +60,13 @@ class Tarea(models.Model):
     descripcion = models.CharField(max_length = 140)
     image_list  = models.ForeignKey(ImageList, on_delete = models.CASCADE, null = True)
     encargado   = models.ForeignKey(Alumno, on_delete = models.CASCADE, default='')
+    
+    fecha_inicio = models.DateField(default=datetime.date.today)
+    fecha_fin = models.DateField(default=datetime.date.today)
+    hora_inicio = models.TimeField(default=datetime.datetime.now())   
+    hora_fin = models.TimeField(default=datetime.datetime.now() )   
+    terminado = models.BooleanField(default=True)
+    retroalimentacion = models.CharField(max_length = 140, default="Todavia no hay correccion")
 
     def __str__(self):
         return self.id_tarea

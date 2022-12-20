@@ -28,9 +28,12 @@
       
       <div class="popup">
         <span class="input-group-btn">
+       <!-- {% if  tarea.terminado  %}
           <div style="position:relative; left:0px;">
-              <a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>
+              <!--<a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>-->
+        	<!--<a href="{% url 'cambiarBoolTarea' tarea.id_tarea %}"><button class="button-login-pic" type="button" style="width:250px">Finalizar</button></a>
           </div>
+          {% endif %}-->
         </span>
       </div>
       {%endif%}
@@ -48,6 +51,10 @@
      
         <div style=" left:50%;top:10% width:100%">
           <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" style="width:45%; height:10%; padding:15px 32px">Modificar Tarea</button></a>
+        </div>
+        
+        <div style=" left:0%;top:10% width:100%">
+        	<a id="{{tarea.id_tarea}}" class="button-login-pic"  onclick="fin_tarea_function(this.id)">Eliminar</a>
         </div>
       {%endif%}
       

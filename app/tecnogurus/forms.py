@@ -17,7 +17,7 @@ class modificarTareaForm(ModelForm):
 
    class Meta:
         model = Tarea
-        fields = ["tipo_tarea","descripcion","image_list", "encargado"]
+        fields = ["tipo_tarea","descripcion","image_list", "encargado","fecha_inicio","hora_inicio","fecha_fin","hora_fin","retroalimentacion"]
         
 
    encargado = forms.Select(choices=alumnos)
@@ -30,7 +30,7 @@ class crearTareaForm(ModelForm):
 
    class Meta:
         model = Tarea
-        fields = ["id_tarea","tipo_tarea","descripcion", "image_list", "encargado"]
+        fields = ["id_tarea","tipo_tarea","descripcion", "image_list", "encargado","fecha_inicio","hora_inicio","fecha_fin","hora_fin"]
 
    encargado = forms.Select(choices=alumnos)
 

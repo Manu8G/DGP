@@ -10,6 +10,17 @@
           <li> Id Tarea: {{ tarea.id_tarea }}</li>
           <li> Tipo: {{tarea.tipo_tarea}}</li>
           <li> Descripcion: {{tarea.descripcion}}</li>
+          <li> Fecha de Inicio: {{tarea.fecha_inicio}}, {{tarea.hora_inicio}}</li>
+          <li> Fecha Final: {{tarea.fecha_fin}}, {{tarea.hora_fin}}</li>
+          <br></br>
+          {% if  tarea.terminado  %}
+       	 <li> Estado: Sin terminar</li>
+       	 
+          {% else %}
+       	 <li> Estado: Terminado</li>
+       	 <li> Correccion: {{tarea.retroalimentacion}}</li>
+          {% endif %} 
+          <br></br> 
       	  {%if user.groups.all.0.name == 'Profesor'%}
           	<li> Asignado a: {{tarea.encargado}}
 		  {% endif %}
@@ -43,6 +54,16 @@
        {%if user.groups.all.0.name == 'Profesor'%}
        	<a href="{% url 'editListaImagenes' %}?edit_lista={{ id_image_list }}" ><button type="button" value="{{ id_image_list }}" name="edit_lista">Editar Pictogramas</button></a></li>
 		{% endif %}
+	{% endif %}
+	
+	{%if user.groups.all.0.name == 'Alumno'%}
+	
+	 {% if  tarea.terminado  %}
+          <div style="position:relative; left:0px;">
+        	<a href="{% url 'cambiarBoolTarea' tarea.id_tarea %}"><button class="button-login-pic" type="button" style="width:250px">Finalizar</button></a>
+          </div>
+          {% endif %}
+	
 	{% endif %}
       
 	<a href="{% url 'fin_tarea' %}"><button class="btn btn-sm btn-outline-secondary" type="button" >Volver</button></a>

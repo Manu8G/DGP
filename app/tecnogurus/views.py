@@ -208,3 +208,11 @@ def crearTarea(request):
         form = crearTareaForm()
 
     return render(request, "crearTarea.html", {'form': form})
+    
+def cambiarBoolTarea(request,id_tarea):
+
+    tarea = Tarea.objects.get(id_tarea=id_tarea)
+    tarea.terminado = not tarea.terminado
+    tarea.save()
+    return redirect("fin_tarea")
+    
