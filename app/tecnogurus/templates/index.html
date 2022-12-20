@@ -9,11 +9,15 @@
             <div class="container">
                 <div class="row">
                   <div class="w-100"></div>     
-                  <div class="col"><a href="{% url 'chat_rooms' %}"><img src="{% static 'img/chat2.PNG' %}" alt="loging con pictogramas" style="width:90%"/></a></div>
-				  <div class="col"><a href="{% url 'fin_tarea' %}"><img src="{% static 'img/tareas3.PNG' %}" alt="loging con pictogramas" style="width:100%"/></a></div>
+                  <div class="col"><a href="{% url 'chat_rooms' %}"><img src="{% static 'img/chat2.PNG' %}" alt="loging con pictogramas" style="width:90%"/></a>
+                  <p>Chat</p></div>
+				  <div class="col"><a href="{% url 'fin_tarea' %}"><img src="{% static 'img/tareas3.PNG' %}" alt="loging con pictogramas" style="width:100%"/></a>
+          <p>Tareas</p></div>
                   <div class="w-100"></div>
-                  <div class="col"><a href=""><img src="{% static 'img/menu.jpg' %}" alt="loging con pictogramas" style="width:90%"/></a></div>
-                  <div class="col"><a href="{% url 'logout' %}?next={% url 'index' %}"><img src="{% static 'img/logout.PNG' %}" alt="loging con pictogramas" style="width:100%"/></a></div>
+                  <div class="col"><a href=""><img src="{% static 'img/menu.jpg' %}" alt="loging con pictogramas" style="width:90%"/></a>
+                  <p>Menús</p></div>
+                  <div class="col"><a href="{% url 'logout' %}?next={% url 'index' %}"><img src="{% static 'img/logout.PNG' %}" alt="loging con pictogramas" style="width:100%"/></a>
+                  <p>Log Out</p></div>
                 </div>
             </div>
             {% else %}
