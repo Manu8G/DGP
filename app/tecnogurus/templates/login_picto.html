@@ -1,13 +1,11 @@
-
 {% extends "base.html" %}
+
 {% load static %}
 
 {% block content%}
-     <h5 class="titulo-pic">INTRODUCE TU USUARIO</h5>
-      <div class="cajita">
-        <input type="text" id="tbuser" placeholder="t u nombre aqui">
-      </div>
-    </div>
+     <h5 class="titulo-pic">¿Quien eres?</h5>
+     <div><img id="user_pic" style="heigth: 20%; width:20%" src="https://www.pictotraductor.com/img/pictogramas/SELES1409904275144.png" onclick="adduser()"></div>
+
 	<div class="grid-container">
         <div><img id="fuente" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/3273?download=false" onclick="addfuente()"></div>
         <div><img id="pajaro" class="imagen-login-pic" src="https://api.arasaac.org/api/pictograms/2490?download=false" onclick="addpajaro()"></div>
@@ -25,20 +23,20 @@
 <script language="javascript" type="text/javascript">
     
 	const nombres = [];
-	var us = document.getElementById('tbuser').value;
-	console.log(us)
-	nombres.push(us)
+	function adduser(){
+    nombres.push('ana')
+  }
 	function addfuente(){
-		nombres.push('1');
+		nombres.push('fuente');
 	}
 	function addpajaro(){
-		nombres.push('2');
+		nombres.push('pajaro');
 	}
 	function addmuseo(){
-		nombres.push('3');
+		nombres.push('1');
 	}
 	function addparque(){
-		nombres.push('4');
+		nombres.push('2');
 	}
 	
 $(function(){
@@ -53,14 +51,13 @@ $(function(){
       data : {'arr[]': arr, csrfmiddlewaretoken: '{{ csrf_token }}' },    
       //data:{arr:arr},//**I want pass the arr to django**
       success:function(data){
-        if (data == 'perfectx2'){
           window.location.href = 'login_ok.html';
-        }
-        else{
-          window.location.href = 'failed_login.html';
-        }
+          
+        
       },
-      error:function(data){alert("failure");}
+      error:function(data){  
+        window.location.href = 'failed_login.html';
+      }
     });
 	console.log("pasa ajax")
   });

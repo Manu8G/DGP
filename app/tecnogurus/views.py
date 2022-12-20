@@ -35,6 +35,8 @@ def login_picto(request):
     return render(request, 'login_picto.html', context={'contra':contra, 'user':user, 'users':users})
 
 
+
+
 def request_login(request):
    return render(request, 'request_login.html')
 
