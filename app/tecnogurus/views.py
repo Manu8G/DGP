@@ -63,25 +63,18 @@ def prueba(request):
         cont += arr[2]
         cont += arr[3]
         cont += arr[4]
-        guardar = 'nok'
+        msg = 'ok'
+        user = authenticate(request, username=us, password=cont)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            #return render(request, "index.html")
+            return JsonResponse(msg, safe=False)
 
-        user = Usuario.objects.all()
-        for u in user:
-            if u.usuario == us:
-                prueba = 'perfect'
-                if u.password == cont:
-                    prueba = 'perfectx2'
-                    JsonResponse(prueba, safe=False)
-                
-            else:
-                prueba = 'fallo'
-
-        
-            
-        return JsonResponse(prueba, safe=False)
-    else:
-        return JsonResponse(guardar, safe=False)
-
+        else:
+            # Return an 'invalid login' error message.
+            return redirect("failed_login.html")
+    
 def tarea(request, id_tarea):
     tarea=Tarea.objects.get(id_tarea=id_tarea)
     lista=ImageList.objects.get(id_image_list=tarea.image_list.id_image_list)
