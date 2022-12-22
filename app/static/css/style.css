@@ -3,6 +3,14 @@
     src: url("font/Letters_for_Learners.ttf");
 }
 
+.newElement{
+    width:70%;
+     height:300px;
+     position:absolute;
+     border:1px solid red;
+}
+
+
 .joined {
   /*display: grid;*/
   /*grid-template-columns: 1fr auto;*/
@@ -68,6 +76,7 @@ body{
 .container { 
     position: relative;
     background-color:#fbfeb2;
+    color: black;
 }    
 
 .grid-container {

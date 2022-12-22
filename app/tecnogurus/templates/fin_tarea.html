@@ -3,54 +3,49 @@
 {% block content %}
 
 <head><title>Pagina de Tareas</title></head>
-<h1> Tareas</h1>
+<h1 style="margin-left: 5px;"> Tareas</h1>
 
 {%if user.groups.all.0.name == 'Profesor'%}
   {%if num_tareas == 1%}
-  <p> Actualmente hay  {{num_tareas}} tarea</p>
+  <p style="margin-left: 10px;"> Actualmente hay  {{num_tareas}} tarea</p>
   {%else%}
-  <p> Actualmente hay  {{num_tareas}} tareas</p>
+  <p style="margin-left: 10px;"> Actualmente hay  {{num_tareas}} tareas</p>
   {%endif %}
 
   
-  <div class="btn_crearTarea">
-    <a href="{% url 'crearTarea' %}" ><button  type="button" >Crear Tarea</button></a>
+  <div class="btn_crearTarea" style="padding-bottom: 10px;">
+    <a href="{% url 'crearTarea' %}" style="margin: 10px;" ><button  type="button" >Crear Tarea</button></a>
  </div>
 {%endif%}
 
     {% for tarea in tarea_p %}
     {%if user.groups.all.0.name == 'Alumno' and tarea.encargado.user.get_username == user.get_username%}
-    <div class="container">
+    <div class="container" style="border: 2px solid #000000; border-radius: 10px; padding: 1px; margin-bottom: 33px; margin-left: 33px; width: 80%; padding-bottom: 8px;">
       
-      <ul class="info-tareas">
-		<a href="{% url 'tarea' tarea.id_tarea %}" ><li> Tarea: {{ tarea.id_tarea }}</li></a>
+      <ul class="info-tareas" >
+		  <a href="{% url 'tarea' tarea.id_tarea %}" style="color: black; font-size: 0.65cm; text-align: center;"><li> Tarea: {{ tarea.id_tarea }}</li></a>
       </ul>
       
       <div class="popup">
         <span class="input-group-btn">
-       <!-- {% if  tarea.terminado  %}
-          <div style="position:relative; left:0px;">
-              <!--<a data-fancybox="gallery" id="{{tarea.id_tarea}}" class="button-login-pic" href="https://i.ytimg.com/vi/nDDp61gaoaY/hqdefault.jpg" onclick="fin_tarea_function(this.id)">Finalizar</a>-->
-        	<!--<a href="{% url 'cambiarBoolTarea' tarea.id_tarea %}"><button class="button-login-pic" type="button" style="width:250px">Finalizar</button></a>
-          </div>
-          {% endif %}-->
+       
         </span>
       </div>
       {%endif%}
 
       {%if user.groups.all.0.name == 'Profesor'%}
-      <div class="container">
+      <div class="container" style="border: 2px solid #000000; border-radius: 10px; padding: 1px; margin-bottom: 33px; margin-left: 33px; width: 80%; padding-left: 15px; padding-bottom: 8px;">
 
       <ul class="info-tareas">
-		<a href="{% url 'tarea' tarea.id_tarea %}" ><li> Tarea: {{ tarea.id_tarea }}</li></a>
+		  <a href="{% url 'tarea' tarea.id_tarea %}" style="color: black; font-size: 0.65cm;"><li> Tarea: {{ tarea.id_tarea }}</li></a>
       </ul>
       
       <div style="position:relative; left:0%;">
           <button id="{{tarea.id_tarea}}" class="button-login-pic" type="button" style="width:45%; height:10%" onclick="duplicarTarea(this.id)">Duplicar Tarea</button>
         </div>
      
-        <div style=" left:50%;top:10% width:100%">
-          <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" style="width:45%; height:10%; padding:15px 32px">Modificar Tarea</button></a>
+        <div style=" left:50%; width:100%">
+          <a href="{% url 'modificarTarea' tarea.id_tarea %}"><button class="button" type="button" style="width:45%; height:10%; padding:15px 32px;">Modificar Tarea</button></a>
         </div>
         
         <div style=" left:0%;top:10% width:100%">

@@ -39,20 +39,23 @@
 
 </style>
 
-<div class="containerModT">
+<div class="containerModT" style="margin-left: 5px;">
 	<div class="formularioModT">
 		<h1>Modificar Tarea</h1>
 		
-		<form action="modificarTarea" method="POST">
+		<form action="modificarTarea" method="POST" style="margin-left: 10px;">
 			{% csrf_token %}
-   			{{ form }}
-          <a href="{% url 'creaListaImagenes' %}"><button  type="button" >Crear nueva lista de imagenes</button></a>
-		      <button type = "submit" id = "submit" >Guardar</button>
+   			{{ form.as_p }}
+    </br>
+          <a href="{% url 'creaListaImagenes' %}"><button type="button" >Nueva lista de imagenes</button></a>
+		      <a><button style="padding-bottom: 17px;" type = "submit" id = "submit" >Guardar</button></a>
 		</form>
 	</div>
-	<p>El formato de fecha es: Año-Mes-Dia</p>
-	<p>El formato de hora es: HH:MM:SS</p>
-	<a href="{% url 'fin_tarea' %}"><button  type="button" >Volver</button></a>
+	<p style="margin-left: 8px; margin-top: 10px;">El formato de fecha es: Año-Mes-Dia</p>
+	<p style="margin-left: 8px;">El formato de hora es: HH:MM:SS</p>
+	<a href="{% url 'fin_tarea' %}" style="margin: 2px; "><button  type="button" >Volver</button></a>
+</br>
+  <a style="height: 5px; margin: 10px;"></a>
 </div>
 
 	

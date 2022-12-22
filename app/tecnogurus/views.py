@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import Alumno, Curso, Usuario, Tarea, ImageList, Image
 from .forms import  modificarTareaForm, crearTareaForm, creaListaImagenesForm
 import json
+from django.contrib.auth import authenticate, login
 
 def index(request):
     context={}
@@ -57,8 +58,7 @@ def prueba(request):
     if request.method == 'POST':
         arr = request.POST.getlist('arr[]')
         us = arr[0]
-        prueba = ''
-        cont = ''
+        cont = 'usuario_'
         cont += arr[1]
         cont += arr[2]
         cont += arr[3]

@@ -2,7 +2,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import  Tarea, ImageList, Image, Alumno
-
+from django.utils.safestring import mark_safe
 
 class CustomMMCF(forms.ModelMultipleChoiceField):    
    def label_from_instance(self, Alumno):
@@ -19,7 +19,6 @@ class modificarTareaForm(ModelForm):
         model = Tarea
         fields = ["tipo_tarea","descripcion","image_list", "encargado","fecha_inicio","hora_inicio","fecha_fin","hora_fin","retroalimentacion"]
         
-
    encargado = forms.Select(choices=alumnos)
 
 class crearTareaForm(ModelForm):
@@ -30,8 +29,8 @@ class crearTareaForm(ModelForm):
 
    class Meta:
         model = Tarea
-        fields = ["id_tarea","tipo_tarea","descripcion", "image_list", "encargado","fecha_inicio","hora_inicio","fecha_fin","hora_fin"]
-
+        fields = ("id_tarea","tipo_tarea","descripcion", "image_list", "encargado","fecha_inicio","hora_inicio","fecha_fin","hora_fin")
+        # widgets= 
    encargado = forms.Select(choices=alumnos)
 
 class creaListaImagenesForm(ModelForm):

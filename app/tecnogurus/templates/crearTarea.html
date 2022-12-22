@@ -40,20 +40,26 @@
 </style>
 
 <ul>
-<div class="containerCrearT">
+<div class="containerCrearT" style="margin-left: 5px;">
 	<div class="formularioCrearT">
 		<h1>Crear Tarea</h1>
 		
-		<form action="crearTarea" method="POST">
+		<form action="crearTarea" method="POST" style="margin-left: 10px;">
 			{% csrf_token %}
-   			{{ form }}
-          <a href="{% url 'creaListaImagenes' %}"><button  type="button" >Crear nueva lista de imagenes</button></a>
-		      <button type = "submit" id = "submit">Guardar</button>
+          {{ form.as_p }}
+        </div>
+   			
+    </br>
+          <a href="{% url 'creaListaImagenes' %}"><button  type="button" >Nueva lista de imagenes</button></a>
+		      <button type = "submit" id = "submit" style="padding-bottom: 17px;">Guardar</button>
 		</form>
 	</div>
-	<p>El formato de fecha es: Año-Mes-Dia</p>
-	<p>El formato de hora es: HH:MM:SS</p>
-	<a href="{% url 'index' %}"><button  type="button" >Volver</button></a>
+</br> 
+	<p style="margin-left: 8px;">El formato de fecha es: Año-Mes-Dia</p>
+	<p style="margin-left: 8px;">El formato de hora es: HH:MM:SS</p>
+	<a href="{% url 'index' %}" style="margin: 2px; "><button  type="button" >Volver</button></a>
+  </br>
+  <a style="height: 5px; margin: 10px;"></a>
 </div>
 </ul>
 		      		
