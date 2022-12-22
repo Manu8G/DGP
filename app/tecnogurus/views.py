@@ -124,6 +124,7 @@ def modificarTarea(request, id_tarea):
     
 
 def duplicarTarea(request):
+    msg = 'nok'
     if request.method == 'POST':
         msg = 'ok'
         arr = request.POST.getlist('borrar[]')
@@ -134,13 +135,17 @@ def duplicarTarea(request):
                 id = t.id_tarea+'_copia'
                 tipo = t.tipo_tarea
                 desc = t.descripcion
-                id_image = t.id_image_list
+                image_l = t.image_list
                 enc = t.encargado
-                nueva = Tarea.objects.create(id_tarea=id, tipo_tarea=tipo, descripcion=desc, id_image_list=id_image, encargado=enc)
-                return (request, "fin_tarea.html")
-
-        return JsonResponse(a_dup, safe=False)
-
+                fech_ini = t.fecha_inicio
+                fech_fin = t.fecha_fin
+                h_ini = t.hora_inicio
+                h_fin = t.hora_fin
+                term = t.terminado
+                ret = t.retroalimentacion
+                nueva = Tarea.objects.create(id_tarea=id, tipo_tarea=tipo, descripcion=desc, image_list=image_l, encargado=enc, fecha_inicio = fech_ini, fecha_fin = fech_fin, hora_inicio=h_ini, hora_fin=h_fin, terminado=term, retroalimentacion=ret)
+                return JsonResponse(nueva, safe=False)
+    return JsonResponse(msg, safe=False)
 
 def listaTarea(request):
     tareas=Tarea.objects.all()
